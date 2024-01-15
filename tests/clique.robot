@@ -1,0 +1,36 @@
+*** settings ***
+
+Resource    ../resources/base.resource
+
+*** Test Cases ***
+
+Deve realizar clique simples 
+
+    Start session
+    Get started
+    Navigate to    Clique em Botões
+    Go to item     Clique simples    Botão clique simples
+
+    Wait Until Page Contains    CLIQUE SIMPLES
+    Click Text                  CLIQUE SIMPLES
+    Wait Until Page Contains    Isso é um clique simples
+
+    Close session
+
+
+Deve realizar clique longo 
+
+    [Tags]    long
+    Start session
+    Get started
+    Navigate to    Clique em Botões
+    Go to item     Clique longo    Botão clique longo
+
+    ${locator}    Set Variable    id=com.qaxperience.yodapp:id/long_click
+    ${positions}    Get Element Location    ${locator}
+
+    Tap With Positions    1000    ${${positions}[x], ${positions}[y]}
+
+    Close session
+
+
